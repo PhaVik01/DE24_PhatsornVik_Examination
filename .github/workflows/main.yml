@@ -2,9 +2,9 @@ name: CICD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "feature/create-generateTest-pipeline"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main" , "feature/create-generateTest-pipeline"]
 permissions:
   id-token: write
   pages: write
@@ -18,9 +18,14 @@ jobs:
     steps:    
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!      
+      
+
+      - name: Installera Faker
+        run: pip install faker
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -p '*Tests.py' -v
+   
 
         
       # lägg till create csv file (glöm inte pip install)
