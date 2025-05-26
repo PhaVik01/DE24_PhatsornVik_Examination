@@ -31,7 +31,7 @@ class TestCountryCode(unittest.TestCase):
 
     def test_if_country_code_is_dk_DK(self):
         input_value = "dk_DK"
-        expected = "XX"
+        expected = "DK"
 
         result = getCountryCode(input_value)
 
