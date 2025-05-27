@@ -2,9 +2,9 @@ name: CICD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "feature/create-pipeline" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "feature/create-pipeline" ]
 permissions:
   id-token: write
   pages: write
@@ -22,6 +22,12 @@ jobs:
 
       - name: Installera Faker
         run: pip install faker
+
+      - name: Run generate.py
+        run: python generate.py
+
+      - name: Run csvtojson.py
+        run: python csvtojson.py
 
       - name: Run tests
         run: python -m unittest discover -s tests -p '*Tests.py' -v
